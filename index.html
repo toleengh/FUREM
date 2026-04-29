@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>FURĒM — London. Couture in Fur.</title>
+<meta name="description" content="FURĒM London. A house of luxury fur, tailored in the heart of Mayfair. Heritage skins, modern silhouettes, considered craft." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Italiana&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     FURĒM London — Site Stylesheet
+     Palette  : #cfcfcf  #d9d9d9  #404040  #727272  + #0b0b0b / #f5f1ea
+     Display  : Italiana (logo) / Cormorant Garamond (headlines)
+     Body     : Inter
+     Spirit   : Editorial, scroll-driven, monochromatic luxury
+     ============================================================ */
+
+  :root{
+    --bg: #0b0b0b;
+    --bg-soft:#141414;
+    --paper:#f5f1ea;
+    --ink:#0b0b0b;
+    --ink-soft:#404040;
+    --line:#727272;
+    --silver:#cfcfcf;
+    --silver-soft:#d9d9d9;
+    --max: 1640px;
+    --pad: clamp(20px, 4vw, 64px);
+    --serif: "Cormorant Garamond", "Times New Roman", serif;
+    --display: "Italiana", "Cormorant Garamond", serif;
+    --sans: "Inter", system-ui, -apple-system, sans-serif;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    background:var(--bg);
+    color:var(--silver);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.55;
+    overflow-x:clip;
+  }
+  img,video{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--silver);color:var(--ink)}
+
+  /* ---------- Loader ---------- */
+  .loader{
+    position:fixed;inset:0;z-index:200;
+    background:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity .9s var(--ease), visibility .9s var(--ease);
+  }
+  .loader.is-done{opacity:0;visibility:hidden;pointer-events:none}
+  .loader__mark{
+    font-family:var(--display);
+    font-size:clamp(28px,4vw,48px);
+    letter-spacing:.6em;
+    color:var(--silver);
+    transform:translateY(8px);
+    opacity:0;animation:fadeUp 1.2s .15s var(--ease) forwards;
+  }
+  .loader__mark::after{
+    content:"";display:block;width:84px;height:1px;background:var(--silver);
+    margin:14px auto 0;transform-origin:left center;
+    animation:line 1.6s .35s var(--ease) forwards;transform:scaleX(0)
+  }
+  @keyframes fadeUp{to{transform:translateY(0);opacity:1}}
+  @keyframes line{to{transform:scaleX(1)}}
+
+  /* ---------- Header / Nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px var(--pad);
+    mix-blend-mode:difference;color:#fff;
+    transition:padding .4s var(--ease);
+  }
+  .nav.scrolled{padding:14px var(--pad)}
+  .nav__brand{
+    font-family:var(--display);
+    font-size:22px;letter-spacing:.5em;
+    text-transform:uppercase;
+  }
+  .nav__brand small{
+    display:block;font-family:var(--sans);
+    font-size:9px;letter-spacing:.55em;
+    margin-top:4px;opacity:.7;font-weight:400;
+  }
+  .nav__menu{
+    display:flex;gap:34px;
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  }
+  .nav__menu a{position:relative;padding:6px 0}
+  .nav__menu a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:currentColor;transform:scaleX(0);transform-origin:right;
+    transition:transform .5s var(--ease);
+  }
+  .nav__menu a:hover::after{transform:scaleX(1);transform-origin:left}
+  .nav__cta{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    border:1px solid currentColor;padding:10px 18px;
+    transition:background .35s var(--ease), color .35s var(--ease);
+  }
+  .nav__cta:hover{background:currentColor;color:var(--bg)}
+  @media (max-width:900px){.nav__menu{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;height:100vh;min-height:680px;
+    overflow:hidden;background:#000;
+  }
+  .hero__video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;opacity:.95;
+  }
+  .hero__veil{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.55) 100%);
+    pointer-events:none;
+  }
+  .hero__copy{
+    position:absolute;left:var(--pad);right:var(--pad);bottom:8vh;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:40px;
+    flex-wrap:wrap;color:#fff;
+  }
+  .hero__title{
+    font-family:var(--display);
+    font-size:clamp(44px, 9vw, 156px);
+    line-height:.95;letter-spacing:.02em;
+    text-transform:uppercase;font-weight:400;
+    max-width:13ch;
+  }
+  .hero__title .it{font-style:italic;font-family:var(--serif);font-weight:300}
+  .hero__meta{
+    font-size:11px;letter-spacing:.35em;text-transform:uppercase;
+    max-width:280px;line-height:2;opacity:.85;
+  }
+  .hero__meta span{display:block;border-top:1px solid rgba(255,255,255,.4);margin-top:14px;padding-top:14px}
+
+  .hero__scroll{
+    position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
+    font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#fff;
+    display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.9;
+  }
+  .hero__scroll::after{
+    content:"";width:1px;height:46px;background:#fff;
+    animation:dropLine 2.2s var(--ease) infinite;
+  }
+  @keyframes dropLine{
+    0%{transform:scaleY(0);transform-origin:top}
+    50%{transform:scaleY(1);transform-origin:top}
+    51%{transform-origin:bottom}
+    100%{transform:scaleY(0);transform-origin:bottom}
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee{
+    border-block:1px solid var(--ink-soft);
+    background:var(--bg);
+    padding:22px 0;overflow:hidden;
+    position:relative;z-index:3;
+  }
+  .marquee__track{
+    display:flex;gap:64px;white-space:nowrap;
+    animation:slide 40s linear infinite;
+    font-family:var(--display);font-size:clamp(28px,4vw,52px);
+    text-transform:uppercase;letter-spacing:.18em;color:var(--silver-soft);
+  }
+  .marquee__track span{display:inline-flex;align-items:center;gap:64px}
+  .marquee__track span::after{
+    content:"✦";font-size:18px;color:var(--line);
+  }
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ---------- Sections base ---------- */
+  section{position:relative}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .eyebrow{
+    font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--line);font-weight:400;
+    display:flex;align-items:center;gap:14px;
+  }
+  .eyebrow::before{content:"";width:36px;height:1px;background:var(--line)}
+  .h-display{
+    font-family:var(--display);
+    font-size:clamp(40px, 7vw, 116px);
+    line-height:.98;letter-spacing:.01em;
+    color:var(--paper);font-weight:400;
+    text-transform:uppercase;
+  }
+  .h-display em{font-family:var(--serif);font-style:italic;font-weight:300;text-transform:none}
+  .h-serif{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(22px,2.4vw,34px);line-height:1.3;color:var(--silver);
+  }
+  p.lede{
+    max-width:62ch;font-size:clamp(15px,1.1vw,18px);
+    color:var(--silver-soft);line-height:1.7;
+  }
+
+  /* ---------- Manifesto (sticky pin) ---------- */
+  .manifesto{
+    padding:160px 0 200px;
+    background:var(--bg);
+  }
+  .manifesto__grid{
+    display:grid;grid-template-columns:1fr 1.3fr;gap:80px;
+    align-items:start;
+  }
+  .manifesto__sticky{position:sticky;top:120px}
+  .manifesto__words{
+    font-family:var(--display);
+    font-size:clamp(32px,4.5vw,72px);
+    line-height:1.05;color:var(--paper);
+    text-transform:uppercase;font-weight:400;
+  }
+  .manifesto__words span{
+    display:block;opacity:.18;transition:opacity .8s var(--ease), color .8s var(--ease);
+  }
+  .manifesto__words span.is-on{opacity:1;color:var(--paper)}
+  .manifesto__words em{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:300}
+  .manifesto__list{display:flex;flex-direction:column;gap:120px;padding-top:40px}
+  .manifesto__item h4{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(28px,3vw,46px);color:var(--paper);margin-bottom:18px;
+  }
+  .manifesto__item p{color:var(--silver-soft);max-width:48ch;line-height:1.8}
+  .manifesto__item small{
+    display:block;margin-top:22px;font-size:10px;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--line);
+  }
+  @media (max-width:900px){
+    .manifesto__grid{grid-template-columns:1fr;gap:48px}
+    .manifesto__sticky{position:static}
+    .manifesto__list{gap:64px}
+  }
+
+  /* ============================================================
+     SCROLL-DRIVEN FRAME ANIMATION SECTION
+     — Pinned full-screen canvas that plays 192 frames as you scroll
+     — The section is 600vh tall so the scroll journey feels cinematic
+     ============================================================ */
+  .frame-scene {
+    position: relative;
+    height: 600vh;           /* scroll distance = animation runway */
+    background: #000;
+  }
+  .frame-scene__sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .frame-scene__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fills the viewport, crops if needed */
+    display: block;
+  }
+  /* Gradient veil over canvas — keeps brand colour story intact */
+  .frame-scene__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,.35) 0%,
+      rgba(0,0,0,0)  25%,
+      rgba(0,0,0,0)  75%,
+      rgba(0,0,0,.5) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Overlaid editorial copy that fades in at the midpoint */
+  .frame-scene__copy {
+    position: absolute;
+    z-index: 3;
+    left: var(--pad);
+    right: var(--pad);
+    bottom: 10vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .frame-scene__copy.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .frame-scene__copy h2 {
+    font-family: var(--display);
+    font-size: clamp(36px, 6vw, 96px);
+    line-height: .98;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    font-weight: 400;
+    max-width: 14ch;
+  }
+  .frame-scene__copy h2 em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: none;
+  }
+  .frame-scene__copy aside {
+    font-size: 11px;
+    letter-spacing: .38em;
+    text-transform: uppercase;
+    line-height: 2;
+    opacity: .8;
+    max-width: 280px;
+  }
+  /* Frame counter / progress indicator */
+  .frame-scene__counter {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    right: var(--pad);
+    transform: translateY(-50%);
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: .5em;
+    color: rgba(255,255,255,.35);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .frame-scene__counter span {
+    display: block;
+    width: 1px;
+    background: rgba(255,255,255,.2);
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .frame-scene__counter span::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,.7);
+    height: 0%;
+    transition: height .1s linear;
+  }
+  .frame-scene__eyebrow {
+    position: absolute;
+    z-index: 3;
+    top: var(--pad);
+    left: var(--pad);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+  }
+  /* Loading state while frames preload */
+  .frame-scene__loader {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    transition: opacity .8s var(--ease), visibility .8s var(--ease);
+  }
+  .frame-scene__loader.is-done {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .frame-scene__loader p {
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--line);
+  }
+  .frame-scene__loader-bar {
+    width: 120px;
+    height: 1px;
+    background: var(--ink-soft);
+    position: relative;
+    overflow: hidden;
+  }
+  .frame-scene__loader-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0%;
+    background: var(--silver);
+    transition: width .15s linear;
+  }
+
+  /* ---------- Cinematic placeholder ---------- */
+  .ph{position:relative;overflow:hidden}
+
+  /* ---------- Craft (pinned image stack) ---------- */
+  .craft{padding:160px 0;background:var(--bg)}
+  .craft__layout{
+    display:grid;grid-template-columns:1.2fr 1fr;gap:100px;align-items:start;
+  }
+  .craft__copy{position:sticky;top:140px}
+  .craft__copy h2{margin:18px 0 32px}
+  .craft__copy ul{
+    list-style:none;border-top:1px solid var(--ink-soft);
+    margin-top:40px;
+  }
+  .craft__copy li{
+    display:grid;grid-template-columns:64px 1fr;
+    gap:24px;align-items:baseline;padding:22px 0;
+    border-bottom:1px solid var(--ink-soft);
+  }
+  .craft__copy li b{
+    font-family:var(--display);font-weight:400;color:var(--silver);
+    font-size:14px;letter-spacing:.3em;
+  }
+  .craft__copy li p{color:var(--silver-soft);font-size:15px}
+  .craft__media{display:flex;flex-direction:column;gap:24px}
+  .craft__media figure{
+    aspect-ratio:4/5;overflow:hidden;background:#171717;
+    position:relative;
+  }
+  .craft__media figure:nth-child(2){aspect-ratio:1/1;align-self:flex-end;width:78%}
+  .craft__media figure:nth-child(3){aspect-ratio:5/4;width:88%}
+  .craft__media .ph{
+    width:100%;height:100%;
+  }
+  .craft__media figure:nth-child(1) .ph{
+    background:radial-gradient(ellipse at 40% 30%, #8a6440 0%, #3a2a1c 60%, #0e0906 100%);
+  }
+  .craft__media figure:nth-child(2) .ph{
+    background:radial-gradient(circle at 60% 60%, #ebe2cf 0%, #9d917a 55%, #3a3225 100%);
+  }
+  .craft__media figure:nth-child(3) .ph{
+    background:radial-gradient(ellipse at 30% 70%, #c0925f 0%, #5a4128 55%, #110a05 100%);
+  }
+  .craft__media figcaption{
+    position:absolute;bottom:14px;left:14px;
+    font-size:10px;letter-spacing:.4em;color:#fff;text-transform:uppercase;
+    mix-blend-mode:difference;
+  }
+  @media (max-width:900px){
+    .craft__layout{grid-template-columns:1fr;gap:60px}
+    .craft__copy{position:static}
+    .craft__media figure:nth-child(2),.craft__media figure:nth-child(3){width:100%}
+  }
+
+  /* ---------- Editorial (split scroll) ---------- */
+  .editorial{
+    padding:160px 0;background:var(--bg-soft);
+    border-block:1px solid #181818;
+  }
+  .editorial__row{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;
+    align-items:center;margin-bottom:140px;
+  }
+  .editorial__row:last-child{margin-bottom:0}
+  .editorial__row.flip .editorial__media{order:2}
+  .editorial__media{
+    aspect-ratio:4/5;background:#161616;overflow:hidden;
+    position:relative;
+  }
+  .editorial__media .ph{
+    width:100%;height:100%;
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.05) 50%,rgba(0,0,0,.7) 100%),
+      radial-gradient(ellipse at 50% 40%, #5a4636 0%, #221a13 60%, #0a0705 100%);
+  }
+  .editorial__media .frame-meta{
+    position:absolute;left:16px;top:16px;font-size:10px;letter-spacing:.4em;
+    color:#fff;mix-blend-mode:difference;text-transform:uppercase;
+  }
+  .editorial__media .frame-meta b{display:block;font-weight:400;font-family:var(--display);font-size:13px}
+  .editorial__copy h3{margin-bottom:22px}
+  .editorial__copy .h-serif{margin-bottom:30px}
+  .editorial__copy p{color:var(--silver-soft);max-width:46ch;line-height:1.85}
+  .editorial__cta{
+    margin-top:40px;display:inline-flex;align-items:center;gap:14px;
+    font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--paper);
+    border-bottom:1px solid var(--silver);padding-bottom:6px;
+  }
+  .editorial__cta::after{content:"→";transition:transform .4s var(--ease)}
+  .editorial__cta:hover::after{transform:translateX(8px)}
+  @media (max-width:900px){
+    .editorial__row,.editorial__row.flip{grid-template-columns:1fr;gap:40px}
+    .editorial__row.flip .editorial__media{order:0}
+    .editorial__row{margin-bottom:80px}
+  }
+
+
+  /* ---------- Quote / Atelier ---------- */
+  .atelier{padding:200px 0;background:var(--bg-soft);text-align:center}
+  .atelier blockquote{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(28px,4.5vw,72px);line-height:1.05;
+    color:var(--paper);text-transform:uppercase;letter-spacing:.02em;
+    max-width:18ch;margin:0 auto;
+  }
+  .atelier blockquote em{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:300;color:var(--silver-soft)}
+  .atelier figcaption{
+    margin-top:48px;font-size:10px;letter-spacing:.5em;
+    text-transform:uppercase;color:var(--line);
+  }
+
+  /* ---------- Visit / Contact ---------- */
+  .visit{padding:160px 0;background:var(--bg)}
+  .visit__grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  }
+  .visit__lead h2{margin:18px 0 28px}
+  .visit__lead p{color:var(--silver-soft);max-width:42ch;line-height:1.85}
+  .visit__contact{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px 60px;
+    border-top:1px solid var(--ink-soft);padding-top:48px;
+  }
+  .visit__contact h6{
+    font-size:10px;letter-spacing:.5em;text-transform:uppercase;
+    color:var(--line);margin-bottom:14px;font-weight:500;
+  }
+  .visit__contact p,.visit__contact a{
+    font-family:var(--serif);font-style:italic;
+    font-size:22px;color:var(--paper);line-height:1.5;
+  }
+  .visit__contact a{font-style:normal;font-family:var(--sans);font-size:14px;letter-spacing:.1em}
+  .news{
+    margin-top:60px;border-top:1px solid var(--ink-soft);padding-top:32px;
+    display:flex;gap:18px;align-items:center;
+  }
+  .news input{
+    flex:1;background:transparent;border:0;border-bottom:1px solid var(--line);
+    color:var(--paper);padding:14px 4px;font-size:14px;letter-spacing:.05em;
+    outline:none;font-family:var(--sans);
+  }
+  .news input::placeholder{color:var(--line);letter-spacing:.3em;text-transform:uppercase;font-size:11px}
+  .news button{
+    background:transparent;border:1px solid var(--silver);
+    color:var(--paper);padding:12px 22px;font-size:11px;letter-spacing:.4em;
+    text-transform:uppercase;cursor:pointer;font-family:var(--sans);
+    transition:.35s var(--ease);
+  }
+  .news button:hover{background:var(--silver);color:var(--ink)}
+  @media (max-width:900px){
+    .visit__grid{grid-template-columns:1fr;gap:60px}
+    .visit__contact{grid-template-columns:1fr}
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:80px var(--pad) 40px;background:var(--bg);
+    border-top:1px solid #161616;
+  }
+  .foot{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;
+    gap:40px;align-items:flex-start;
+    max-width:var(--max);margin:0 auto;
+  }
+  .foot__brand{font-family:var(--display);font-size:28px;letter-spacing:.6em;color:var(--paper)}
+  .foot__brand small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.55em;margin-top:6px;color:var(--line)}
+  .foot h6{
+    font-size:10px;letter-spacing:.5em;text-transform:uppercase;
+    color:var(--line);margin-bottom:18px;font-weight:500;
+  }
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot ul a{font-size:13px;color:var(--silver-soft);transition:color .3s var(--ease)}
+  .foot ul a:hover{color:var(--paper)}
+  .foot__bottom{
+    max-width:var(--max);margin:60px auto 0;
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:24px;border-top:1px solid #161616;
+    font-size:10px;letter-spacing:.4em;color:var(--line);text-transform:uppercase;
+    flex-wrap:wrap;gap:14px;
+  }
+  @media (max-width:900px){
+    .foot{grid-template-columns:1fr 1fr;gap:40px}
+  }
+
+  /* ---------- Reveal (IntersectionObserver) ---------- */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease), transform 1s var(--ease)}
+  .reveal.is-in{opacity:1;transform:translateY(0)}
+  .reveal-stagger > *{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease), transform .8s var(--ease)}
+  .reveal-stagger.is-in > *{opacity:1;transform:translateY(0)}
+  .reveal-stagger.is-in > *:nth-child(2){transition-delay:.08s}
+  .reveal-stagger.is-in > *:nth-child(3){transition-delay:.16s}
+  .reveal-stagger.is-in > *:nth-child(4){transition-delay:.24s}
+  .reveal-stagger.is-in > *:nth-child(5){transition-delay:.32s}
+  .reveal-stagger.is-in > *:nth-child(6){transition-delay:.40s}
+
+  /* Scroll-driven progress bar */
+  .progress{
+    position:fixed;left:0;top:0;height:1px;width:100%;z-index:99;
+    background:linear-gradient(90deg,var(--silver) 0%,var(--silver) 100%);
+    transform-origin:0 50%;transform:scaleX(0);
+  }
+  @supports (animation-timeline: scroll()){
+    .progress{
+      animation:progressGrow auto linear;animation-timeline:scroll(root);
+    }
+    @keyframes progressGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  }
+
+  /* Scroll-driven word reveal — fallback also covered by JS */
+  @supports (animation-timeline: view()){
+    .word-rise span{
+      animation: wordIn linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    @keyframes wordIn{
+      from{opacity:.18;color:var(--ink-soft)}
+      to{opacity:1;color:var(--paper)}
+    }
+  }
+
+  /* Custom dot cursor (desktop) */
+  @media (hover:hover) and (pointer:fine){
+    body{cursor:none}
+    .dot{
+      position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;
+      background:var(--silver);pointer-events:none;z-index:300;
+      transform:translate(-50%,-50%);
+      mix-blend-mode:difference;transition:transform .15s var(--ease), width .3s, height .3s;
+    }
+    .ring{
+      position:fixed;left:0;top:0;width:36px;height:36px;border-radius:50%;
+      border:1px solid var(--silver);pointer-events:none;z-index:300;
+      transform:translate(-50%,-50%);
+      mix-blend-mode:difference;transition:transform .35s var(--ease), width .4s, height .4s, opacity .3s;
+    }
+    a:hover ~ .ring,button:hover ~ .ring{width:64px;height:64px}
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__mark">FURĒM</div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Custom cursor -->
+  <div class="dot" id="dot"></div>
+  <div class="ring" id="ring"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">FURĒM<small>London · Est. MMXXVI</small></a>
+    <nav class="nav__menu">
+      <a href="#manifesto">Maison</a>
+      <a href="#craft">Atelier</a>
+      <a href="#editorial">Editorial</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a href="#visit" class="nav__cta">Private Appointment</a>
+  </header>
+
+  <!-- HERO with logo reveal video -->
+  <section class="hero" id="top">
+    <video class="hero__video"
+           autoplay muted loop playsinline preload="auto"
+           poster="">
+      <source src="assets/video/logo-reveal.mp4" type="video/mp4">
+    </video>
+    <div class="hero__veil"></div>
+
+    <div class="hero__copy">
+      <div class="hero__meta">
+        Winter Collection<br>
+        <span>MMXXVI · Edition N°01<br>By appointment, Mayfair</span>
+      </div>
+    </div>
+
+    <div class="hero__scroll">Scroll</div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span>FURĒM London</span><span>Sable · Mink · Fox · Chinchilla</span>
+      <span>Couture in Fur</span><span>Mayfair · Atelier</span>
+      <span>Winter MMXXVI</span><span>By Appointment</span>
+      <span>FURĒM London</span><span>Sable · Mink · Fox · Chinchilla</span>
+      <span>Couture in Fur</span><span>Mayfair · Atelier</span>
+      <span>Winter MMXXVI</span><span>By Appointment</span>
+    </div>
+  </div>
+
+  <!-- MANIFESTO — sticky reveal -->
+  <section class="manifesto" id="manifesto">
+    <div class="wrap">
+      <div class="manifesto__grid">
+        <div class="manifesto__sticky">
+          <p class="eyebrow">Maison · No. I</p>
+          <h2 class="manifesto__words word-rise" style="margin-top:24px">
+            <span>A house</span>
+            <span>of <em>quiet</em></span>
+            <span>luxury,</span>
+            <span>tailored</span>
+            <span>by hand</span>
+            <span><em>in</em> London.</span>
+          </h2>
+        </div>
+
+        <div class="manifesto__list">
+          <div class="manifesto__item reveal">
+            <h4>Skins of provenance.</h4>
+            <p>Every pelt arrives at the atelier traceable to its origin — Russian sable, Scandinavian mink, North American silver fox — selected by hand for length, sheen and the sound it makes when stroked against the grain.</p>
+            <small>Origin · 01</small>
+          </div>
+          <div class="manifesto__item reveal">
+            <h4>Cut on a London block.</h4>
+            <p>Patterns are drafted to the body, not the bolt. Each garment passes through twelve hands before it leaves Bruton Place — drawn, dressed, lined, stitched and pressed with the patience of an older century.</p>
+            <small>Atelier · 02</small>
+          </div>
+          <div class="manifesto__item reveal">
+            <h4>A wardrobe meant to stay.</h4>
+            <p>FURĒM is not seasonal. It is the coat your daughter will wear on a Tuesday in 2049, the jacket that survives a thousand opera nights and a hundred late dinners — restored, never replaced.</p>
+            <small>Promise · 03</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SCROLL-DRIVEN FRAME ANIMATION
+       192 frames · scroll 600vh to play the full sequence
+       ===================================================== -->
+  <section class="frame-scene" id="frame-scene">
+    <div class="frame-scene__sticky">
+
+      <!-- Preload loader overlay -->
+      <div class="frame-scene__loader" id="frameLoader">
+        <p>Loading sequence</p>
+        <div class="frame-scene__loader-bar">
+          <div class="frame-scene__loader-fill" id="frameLoaderFill"></div>
+        </div>
+      </div>
+
+      <!-- The canvas where frames are drawn -->
+      <canvas class="frame-scene__canvas" id="frameCanvas"></canvas>
+
+      <!-- Subtle gradient veil -->
+      <div class="frame-scene__veil"></div>
+
+      <!-- Eyebrow label -->
+      <div class="frame-scene__eyebrow">FURĒM · The Film</div>
+
+      <!-- Progress bar track on right edge -->
+      <div class="frame-scene__counter" id="frameCounter">
+        <span id="frameProgressBar"></span>
+      </div>
+
+      <!-- Overlaid copy revealed at mid-scroll -->
+      <div class="frame-scene__copy" id="frameCopy">
+        <h2>The coat <em>that endures</em><br>every winter.</h2>
+        <aside>
+          Filmed across Mayfair<br>
+          <span style="display:block;border-top:1px solid rgba(255,255,255,.25);margin-top:12px;padding-top:12px">
+            Winter MMXXVI · Edition N°01
+          </span>
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CRAFT — sticky copy w/ flowing imagery -->
+  <section class="craft" id="craft">
+    <div class="wrap">
+      <div class="craft__layout">
+
+        <div class="craft__copy">
+          <p class="eyebrow">The Atelier</p>
+          <h2 class="h-display">A craft <em>measured</em><br>in hours,<br>not minutes.</h2>
+          <p class="lede">Fur is the slowest material in fashion. A single jacket asks for one hundred and eighty hours of considered work — knife to pattern, pelt to lining — performed in daylight, on a London block, by hands that have done it before.</p>
+          <ul>
+            <li><b>180h</b><p>Average bench time, from drafting to final press.</p></li>
+            <li><b>12</b><p>Hands that touch a single FURĒM piece.</p></li>
+            <li><b>1949</b><p>The year the bench we still use was first set.</p></li>
+            <li><b>∞</b><p>Restorations covered, for as long as the coat exists.</p></li>
+          </ul>
+        </div>
+
+        <div class="craft__media">
+          <figure class="reveal">
+            <img src="assets/img/pic1.png" alt="Atelier detail">
+            <figcaption>Sable · Macro</figcaption>
+          </figure>
+          <figure class="reveal">
+            <img src="assets/img/pic2.png" alt="Atelier craft">
+            <figcaption>Mink · Cream</figcaption>
+          </figure>
+          <figure class="reveal">
+            <img src="assets/img/pic3.png" alt="Atelier texture">
+            <figcaption>Fox · Auburn</figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL — paired stories -->
+  <section class="editorial" id="editorial">
+    <div class="wrap">
+
+      <div class="editorial__row">
+        <div class="editorial__media reveal">
+          <img src="assets/img/pic4.png" alt="Westminster, January">
+          <span class="frame-meta">Frame 01<b>Westminster, January</b></span>
+        </div>
+        <div class="editorial__copy reveal">
+          <p class="eyebrow">Editorial · I</p>
+          <h3 class="h-display">A walk <em>across</em> Westminster.</h3>
+          <p class="h-serif">Photographed in the rain, before the bridge filled with traffic.</p>
+          <p>Our winter campaign begins where most London stories do — at the foot of the clock tower, with cold air, wet pavement, and a coat heavy enough to be felt on the shoulders. The result is a quiet sort of cinema.</p>
+          <a href="#" class="editorial__cta">Read the story</a>
+        </div>
+      </div>
+
+      <div class="editorial__row flip">
+        <div class="editorial__media reveal">
+          <img src="assets/img/pic5.png" alt="Regent Street, dusk">
+          <span class="frame-meta">Frame 02<b>Regent Street, dusk</b></span>
+        </div>
+        <div class="editorial__copy reveal">
+          <p class="eyebrow">Editorial · II</p>
+          <h3 class="h-display">After hours <em>on</em> Regent.</h3>
+          <p class="h-serif">A black coat. A small bag. A long evening.</p>
+          <p>FURĒM is built for the hours after the city has gone home — for theatre exits, late dinners and quiet drives north along the Mall. The pieces are weighted to feel honest in cold air, and lined to feel forgiving in warm rooms.</p>
+          <a href="#" class="editorial__cta">Read the story</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ATELIER QUOTE -->
+  <section class="atelier">
+    <figure class="wrap">
+      <blockquote class="reveal">
+        "Fur is the only fabric <em>that improves</em> with the cold."
+      </blockquote>
+      <figcaption class="reveal">— A. Petrov · Master Furrier · FURĒM Atelier</figcaption>
+    </figure>
+  </section>
+
+  <!-- VISIT / CONTACT -->
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div class="visit__grid">
+        <div class="visit__lead">
+          <p class="eyebrow">Visit · By Appointment</p>
+          <h2 class="h-display reveal">A private <em>fitting</em>,<br>at the atelier.</h2>
+          <p class="reveal">FURĒM does not keep a shop window. Garments are shown one at a time, in a room above Bruton Place, by appointment only — Tuesday to Saturday, between eleven and seven.</p>
+        </div>
+
+        <div>
+          <div class="visit__contact">
+            <div>
+              <h6>Atelier</h6>
+              <p>14a Bruton Place<br>Mayfair, London W1J 6LX</p>
+            </div>
+            <div>
+              <h6>Hours</h6>
+              <p>Tuesday — Saturday<br>11.00 — 19.00</p>
+            </div>
+            <div>
+              <h6>Direct</h6>
+              <a href="mailto:atelier@furem.london">atelier@furem.london</a>
+              <a href="tel:+442074990000">+44 (0) 20 7499 0000</a>
+            </div>
+            <div>
+              <h6>Press</h6>
+              <a href="mailto:press@furem.london">press@furem.london</a>
+            </div>
+          </div>
+
+          <form class="news" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thank you';">
+            <input type="email" required placeholder="Receive the journal" aria-label="Email">
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot">
+      <div>
+        <div class="foot__brand">FURĒM<small>London · MMXXVI</small></div>
+        <p style="margin-top:24px;max-width:32ch;color:var(--silver-soft);font-size:13px;line-height:1.7">A house of luxury fur. By appointment, in Mayfair.</p>
+      </div>
+      <div>
+        <h6>Maison</h6>
+        <ul>
+          <li><a href="#manifesto">Our story</a></li>
+          <li><a href="#craft">The atelier</a></li>
+          <li><a href="#editorial">Editorial</a></li>
+          <li><a href="#">Restoration</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Collection</h6>
+        <ul>
+          <li><a href="#editorial">Winter MMXXVI</a></li>
+          <li><a href="#">Archive</a></li>
+          <li><a href="#">Made-to-Measure</a></li>
+          <li><a href="#">Resale</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Contact</h6>
+        <ul>
+          <li><a href="mailto:atelier@furem.london">atelier@furem.london</a></li>
+          <li><a href="tel:+442074990000">+44 (0) 20 7499 0000</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© FURĒM London MMXXVI · All rights reserved</span>
+      <span>Privacy · Terms · Cookies</span>
+    </div>
+  </footer>
+
+  <script>
+  // ---------- Loader ----------
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('is-done'), 900);
+  });
+
+  // ---------- Nav shrink ----------
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // ---------- Custom cursor ----------
+  const dot = document.getElementById('dot');
+  const ring = document.getElementById('ring');
+  if (matchMedia('(hover:hover)').matches) {
+    let rx=0, ry=0, dx=0, dy=0;
+    window.addEventListener('mousemove', (e)=>{ dx=e.clientX; dy=e.clientY; dot.style.transform=`translate(${dx}px,${dy}px) translate(-50%,-50%)`; });
+    const tick = () => { rx+=(dx-rx)*.18; ry+=(dy-ry)*.18; ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(tick); };
+    tick();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{ring.style.width='64px';ring.style.height='64px';});
+      el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';});
+    });
+  }
+
+  // ---------- Reveal ----------
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target);} });
+  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.reveal-stagger').forEach(el=>io.observe(el));
+
+  // ---------- Word rise ----------
+  if(!CSS.supports('animation-timeline: view()')){
+    const wr=new IntersectionObserver((entries)=>{ entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('is-on'); }); },{threshold:.6});
+    document.querySelectorAll('.manifesto__words span').forEach(el=>wr.observe(el));
+  } else {
+    document.querySelectorAll('.manifesto__words span').forEach(el=>el.classList.add('is-on'));
+  }
+
+
+  // ---------- Placeholder labels ----------
+
+  // ============================================================
+  // SCROLL-DRIVEN FRAME ANIMATION
+  // Ported exactly from ScrollVideoHero.jsx
+  // ============================================================
+  const TOTAL        = 192;
+  const PX_PER_FRAME = 15;
+  const SCROLL_HEIGHT = TOTAL * PX_PER_FRAME; // 2880px scroll runway
+
+  const frameSection  = document.getElementById('frame-scene');
+  const frameCanvas   = document.getElementById('frameCanvas');
+  const frameLoader   = document.getElementById('frameLoader');
+  const frameLoaderFill = document.getElementById('frameLoaderFill');
+  const frameCopy     = document.getElementById('frameCopy');
+
+  // Stored frames array
+  const frames = new Array(TOTAL).fill(null);
+  let currentIdx = 0;
+  let rafPending = false;
+  let isReady    = false;
+
+  // Fix section height to match scroll runway
+  frameSection.style.height = `calc(100vh + ${SCROLL_HEIGHT}px)`;
+
+  // Canvas: size with device pixel ratio (sharp on retina)
+  function syncSize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    frameCanvas.width  = W * dpr;
+    frameCanvas.height = H * dpr;
+    frameCanvas.style.width  = W + 'px';
+    frameCanvas.style.height = H + 'px';
+  }
+
+  // Cover-crop draw — exact port from coverDraw()
+  function coverDraw(ctx, img, cw, ch) {
+    const iAR = img.naturalWidth / img.naturalHeight;
+    const cAR = cw / ch;
+    let sx, sy, sw, sh;
+    if (iAR > cAR) {
+      sh = img.naturalHeight;
+      sw = sh * cAR;
+      sx = (img.naturalWidth - sw) / 2;
+      sy = 0;
+    } else {
+      sw = img.naturalWidth;
+      sh = sw / cAR;
+      sx = 0;
+      sy = (img.naturalHeight - sh) / 2;
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
+  }
+
+  // Paint one frame
+  function paint(idx) {
+    const img = frames[idx];
+    if (!img || !frameCanvas) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const ctx = frameCanvas.getContext('2d');
+    ctx.save();
+    ctx.scale(dpr, dpr);
+    coverDraw(ctx, img, W, H);
+    ctx.restore();
+  }
+
+  // Scroll → frame calculation
+  function tick() {
+    rafPending = false;
+    const scrolledIn = Math.max(0, -frameSection.getBoundingClientRect().top);
+    const progress   = Math.min(1, scrolledIn / SCROLL_HEIGHT);
+    const idx        = Math.min(TOTAL - 1, Math.floor(progress * TOTAL));
+
+    if (idx !== currentIdx) {
+      currentIdx = idx;
+      paint(idx);
+    }
+
+    if (progress > 0.5) frameCopy.classList.add('is-visible');
+    else frameCopy.classList.remove('is-visible');
+  }
+
+  // Scroll listener with rAF throttle
+  window.addEventListener('scroll', () => {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(tick);
+  }, { passive: true });
+
+  // Resize: re-sync canvas and repaint
+  window.addEventListener('resize', () => {
+    syncSize();
+    paint(currentIdx);
+  }, { passive: true });
+
+  // Preload all 192 frames
+  let loadedCount = 0;
+
+  for (let i = 0; i < TOTAL; i++) {
+    (function(idx) {
+      const img = new Image();
+      img.src = 'assets/frames/f' + String(idx).padStart(3, '0') + '.jpg';
+
+      img.onload = function() {
+        frames[idx] = img;
+        loadedCount++;
+        frameLoaderFill.style.width = (loadedCount / TOTAL * 100) + '%';
+
+        // Show frame 0 immediately — don't wait for all 192
+        if (idx === 0) {
+          syncSize();
+          paint(0);
+          isReady = true;
+          frameLoader.classList.add('is-done');
+        }
+
+        // When all frames loaded, sync to current scroll position
+        if (loadedCount === TOTAL) {
+          tick();
+        }
+      };
+
+      img.onerror = function() {
+        loadedCount++;
+        frameLoaderFill.style.width = (loadedCount / TOTAL * 100) + '%';
+        if (loadedCount === TOTAL) frameLoader.classList.add('is-done');
+      };
+
+    })(i);
+  }
+
+  // Initial canvas size
+  syncSize();
+  </script>
+
+</body>
+</html>
