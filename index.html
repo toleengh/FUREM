@@ -306,7 +306,7 @@
   .frame-scene__copy h2 {
     font-family: var(--display);
     font-size: clamp(36px, 6vw, 96px);
-    line-height: .98;
+    line-height: 1.1;
     letter-spacing: .02em;
     text-transform: uppercase;
     font-weight: 400;
@@ -775,43 +775,6 @@
     </div>
   </div>
 
-  <!-- MANIFESTO — sticky reveal -->
-  <section class="manifesto" id="manifesto">
-    <div class="wrap">
-      <div class="manifesto__grid">
-        <div class="manifesto__sticky">
-          <p class="eyebrow">Maison · No. I</p>
-          <h2 class="manifesto__words word-rise" style="margin-top:24px">
-            <span>A house</span>
-            <span>of <em>quiet</em></span>
-            <span>luxury,</span>
-            <span>tailored</span>
-            <span>by hand</span>
-            <span><em>in</em> London.</span>
-          </h2>
-        </div>
-
-        <div class="manifesto__list">
-          <div class="manifesto__item reveal">
-            <h4>Skins of provenance.</h4>
-            <p>Every pelt arrives at the atelier traceable to its origin — Russian sable, Scandinavian mink, North American silver fox — selected by hand for length, sheen and the sound it makes when stroked against the grain.</p>
-            <small>Origin · 01</small>
-          </div>
-          <div class="manifesto__item reveal">
-            <h4>Cut on a London block.</h4>
-            <p>Patterns are drafted to the body, not the bolt. Each garment passes through twelve hands before it leaves Bruton Place — drawn, dressed, lined, stitched and pressed with the patience of an older century.</p>
-            <small>Atelier · 02</small>
-          </div>
-          <div class="manifesto__item reveal">
-            <h4>A wardrobe meant to stay.</h4>
-            <p>FURĒM is not seasonal. It is the coat your daughter will wear on a Tuesday in 2049, the jacket that survives a thousand opera nights and a hundred late dinners — restored, never replaced.</p>
-            <small>Promise · 03</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- =====================================================
        SCROLL-DRIVEN FRAME ANIMATION
        192 frames · scroll 600vh to play the full sequence
@@ -834,7 +797,7 @@
       <div class="frame-scene__veil"></div>
 
       <!-- Eyebrow label -->
-      <div class="frame-scene__eyebrow">FURĒM · The Film</div>
+      <div class="frame-scene__eyebrow"></div>
 
       <!-- Progress bar track on right edge -->
       <div class="frame-scene__counter" id="frameCounter">
@@ -853,6 +816,47 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- INFINITE 3D CAROUSEL -->
+  <section class="carousel-sec" id="carousel">
+    <div class="wrap">
+      <p class="eyebrow"></p>
+      <h2 class="h-display reveal" style="margin-top:18px">The <em>Collection.</em></h2>
+    </div>
+
+    <div class="carousel-scene" id="carouselScene">
+      <div class="carousel-stage" id="carouselStage">
+
+        <div class="carousel-card">
+          <img src="assets/img/carousel-1.png" alt="The Albany">
+          <div class="carousel-card__cap"><span>N°01</span><h4>The Albany</h4></div>
+        </div>
+
+        <div class="carousel-card">
+          <img src="assets/img/carousel-2.png" alt="The Lyon">
+          <div class="carousel-card__cap"><span>N°02</span><h4>The Lyon</h4></div>
+        </div>
+
+        <div class="carousel-card">
+          <img src="assets/img/carousel-3.png" alt="The Mara">
+          <div class="carousel-card__cap"><span>N°03</span><h4>The Mara</h4></div>
+        </div>
+
+        <div class="carousel-card">
+          <img src="assets/img/carousel-4.png" alt="The Cole">
+          <div class="carousel-card__cap"><span>N°04</span><h4>The Cole</h4></div>
+        </div>
+
+        <div class="carousel-card">
+          <img src="assets/img/carousel-5.png" alt="The Eden">
+          <div class="carousel-card__cap"><span>N°05</span><h4>The Eden</h4></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="carouselDots"></div>
   </section>
 
   <!-- CRAFT — sticky copy w/ flowing imagery -->
@@ -898,7 +902,7 @@
       <div class="editorial__row">
         <div class="editorial__media reveal">
           <img src="assets/img/pic4.jpeg" alt="Westminster, January">
-          <span class="frame-meta">Frame 01<b>Westminster, January</b></span>
+          <span class="frame-meta"><b></b></span>
         </div>
         <div class="editorial__copy reveal">
           <p class="eyebrow">Editorial · I</p>
@@ -936,47 +940,6 @@
     </figure>
   </section>
 
-  <!-- INFINITE 3D CAROUSEL -->
-  <section class="carousel-sec" id="carousel">
-    <div class="wrap">
-      <p class="eyebrow">Selected Pieces · MMXXVI</p>
-      <h2 class="h-display reveal" style="margin-top:18px">The <em>Collection.</em></h2>
-    </div>
-
-    <div class="carousel-scene" id="carouselScene">
-      <div class="carousel-stage" id="carouselStage">
-
-        <div class="carousel-card">
-          <img src="assets/img/carousel-1.png" alt="The Albany">
-          <div class="carousel-card__cap"><span>N°01</span><h4>The Albany</h4></div>
-        </div>
-
-        <div class="carousel-card">
-          <img src="assets/img/carousel-2.png" alt="The Lyon">
-          <div class="carousel-card__cap"><span>N°02</span><h4>The Lyon</h4></div>
-        </div>
-
-        <div class="carousel-card">
-          <img src="assets/img/carousel-3.png" alt="The Mara">
-          <div class="carousel-card__cap"><span>N°03</span><h4>The Mara</h4></div>
-        </div>
-
-        <div class="carousel-card">
-          <img src="assets/img/carousel-4.png" alt="The Cole">
-          <div class="carousel-card__cap"><span>N°04</span><h4>The Cole</h4></div>
-        </div>
-
-        <div class="carousel-card">
-          <img src="assets/img/carousel-5.png" alt="The Eden">
-          <div class="carousel-card__cap"><span>N°05</span><h4>The Eden</h4></div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="carousel-dots" id="carouselDots"></div>
-  </section>
-
   <!-- VISIT / CONTACT -->
   <section class="visit" id="visit">
     <div class="wrap">
@@ -1012,6 +975,43 @@
             <input type="email" required placeholder="Receive the journal" aria-label="Email">
             <button type="submit">Subscribe</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO — sticky reveal -->
+  <section class="manifesto" id="manifesto">
+    <div class="wrap">
+      <div class="manifesto__grid">
+        <div class="manifesto__sticky">
+          <p class="eyebrow">Maison · No. I</p>
+          <h2 class="manifesto__words word-rise" style="margin-top:24px">
+            <span>A house</span>
+            <span>of <em>quiet</em></span>
+            <span>luxury,</span>
+            <span>tailored</span>
+            <span>by hand</span>
+            <span><em>in</em> London.</span>
+          </h2>
+        </div>
+
+        <div class="manifesto__list">
+          <div class="manifesto__item reveal">
+            <h4>Skins of provenance.</h4>
+            <p>Every pelt arrives at the atelier traceable to its origin — Russian sable, Scandinavian mink, North American silver fox — selected by hand for length, sheen and the sound it makes when stroked against the grain.</p>
+            <small>Origin · 01</small>
+          </div>
+          <div class="manifesto__item reveal">
+            <h4>Cut on a London block.</h4>
+            <p>Patterns are drafted to the body, not the bolt. Each garment passes through twelve hands before it leaves Bruton Place — drawn, dressed, lined, stitched and pressed with the patience of an older century.</p>
+            <small>Atelier · 02</small>
+          </div>
+          <div class="manifesto__item reveal">
+            <h4>A wardrobe meant to stay.</h4>
+            <p>FURĒM is not seasonal. It is the coat your daughter will wear on a Tuesday in 2049, the jacket that survives a thousand opera nights and a hundred late dinners — restored, never replaced.</p>
+            <small>Promise · 03</small>
+          </div>
         </div>
       </div>
     </div>
@@ -1230,11 +1230,17 @@
       userTimer = setTimeout(() => { userActive = false; }, 2200);
     }
 
+    // ── Hover gate via mousemove — only fires on real mouse movement, not scroll ──
+    let isHovered = false;
+    scene.addEventListener('mousemove', () => { isHovered = true; });
+    scene.addEventListener('mouseleave', () => { isHovered = false; scrollVel = 0; });
+
     // ── Scroll wheel ──
     scene.addEventListener('wheel', e => {
+      if (!isHovered) return;   // page scrolls normally if cursor wasn't physically moved here
       e.preventDefault();
       markUserActive();
-      scrollVel -= e.deltaY * 0.2;   // scroll down → forward (negative rotation)
+      scrollVel -= e.deltaY * 0.2;
     }, { passive: false });
 
     // ── Pointer drag / swipe ──
