@@ -1380,43 +1380,42 @@
     syncSize();
     paint(currentIdx);
   }, { passive: true });
+// Preload all 192 frames
+let loadedCount = 0;
+const VERSION = "?v=2"; // 👈 هذا أهم سطر
 
-  // Preload all 192 frames
-  let loadedCount = 0;
+for (let i = 0; i < TOTAL; i++) {
+  (function(idx) {
+    const img = new Image();
+    img.src = 'assets/frames/f' + String(idx).padStart(3, '0') + '.jpg' + VERSION;
 
-  for (let i = 0; i < TOTAL; i++) {
-    (function(idx) {
-      const img = new Image();
-      img.src = 'assets/frames/f' + String(idx).padStart(3, '0') + '.jpg';
+    img.onload = function() {
+      frames[idx] = img;
+      loadedCount++;
+      frameLoaderFill.style.width = (loadedCount / TOTAL * 100) + '%';
 
-      img.onload = function() {
-        frames[idx] = img;
-        loadedCount++;
-        frameLoaderFill.style.width = (loadedCount / TOTAL * 100) + '%';
+      // Show frame 0 immediately — don't wait for all 192
+      if (idx === 0) {
+        syncSize();
+        paint(0);
+        isReady = true;
+        frameLoader.classList.add('is-done');
+      }
 
-        // Show frame 0 immediately — don't wait for all 192
-        if (idx === 0) {
-          syncSize();
-          paint(0);
-          isReady = true;
-          frameLoader.classList.add('is-done');
-        }
+      // When all frames loaded, sync to current scroll position
+      if (loadedCount === TOTAL) {
+        tick();
+      }
+    };
 
-        // When all frames loaded, sync to current scroll position
-        if (loadedCount === TOTAL) {
-          tick();
-        }
-      };
+    img.onerror = function() {
+      loadedCount++;
+      frameLoaderFill.style.width = (loadedCount / TOTAL * 100) + '%';
+      if (loadedCount === TOTAL) frameLoader.classList.add('is-done');
+    };
 
-      img.onerror = function() {
-        loadedCount++;
-        frameLoaderFill.style.width = (loadedCount / TOTAL * 100) + '%';
-        if (loadedCount === TOTAL) frameLoader.classList.add('is-done');
-      };
-
-    })(i);
-  }
-
+  })(i);
+}
   // Initial canvas size
   syncSize();
   </script>
